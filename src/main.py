@@ -47,17 +47,19 @@ for s in seg:
 # normalize
 for i, s in enumerate(FP):
     FP[i][1] = FP[i][1]/fundamental_b
+    FP[i][0] = FP[i][0]/fundamental_f
 
 print(FP)
 ##
 
+freq = 440
 duration = 5 #sec
 sample_rate = 44100
 
 wav = [0 for _ in range(0, int(sample_rate*duration))]
 for fp in FP:
-    wav = np.add(wav, [ fp[1]*np.cos(2*np.pi*(fp[0]*(x/sample_rate))) for x in range(0, int(sample_rate*duration)) ])
-#write("../violin", sample_rate, wav)
+    wav = np.add(wav, [ fp[1]*np.cos(2*np.pi*((fp[0]*freq)*(x/sample_rate))) for x in range(0, int(sample_rate*duration)) ])
+write("../violin", sample_rate, wav)
 
 
 plt.figure(1)
@@ -67,5 +69,6 @@ plt.plot(spectrum)
 plt.figure(3)
 plt.plot(abs_spec)
 plt.figure(4)
+
 plt.plot(wav)
 plt.show()

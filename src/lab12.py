@@ -20,10 +20,11 @@ def karplus_strong(wavetable, n_samples, decay):
 
 fs = 44100
 decay_factor = 0.995
-wavetable = librosa.load('../snd/violin_A3_05_forte_arco-normal.mp3')[0]
+wavetable = librosa.load('../violin')[0]
+wavetable = wavetable*2
 result = karplus_strong(wavetable, 5 * fs, decay_factor)
 
 plt.plot(result)
 plt.show()
-#result = result.astype('float32')
-#wavfile.write('../result.wav', fs, result)
+result = result.astype('float32')
+wavfile.write('../result.wav', fs, result)
