@@ -14,7 +14,7 @@ with open(path+'/A.pickle','rb') as file:
     a=pickle.load(file)
 with open(path+'/B.pickle','rb') as file:
     b=pickle.load(file)
-with open(path+'/W.pickle','rb') as file:
+with open(path+'/w.pickle','rb') as file:
     w=pickle.load(file)
 with open(path+'/data.pickle','rb') as file:
     data=pickle.load(file)
