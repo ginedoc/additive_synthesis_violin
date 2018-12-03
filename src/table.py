@@ -7,7 +7,7 @@ import pickle
 class table():
     def __init__(self, dir_path='../linear_v2.2/NOMM'):
         self.dir_path = dir_path
-    
+        self.table = []
 
     """
     load table from path(default = ../linear_v2.2/NOMM)
@@ -34,11 +34,11 @@ class table():
         info = open('../' + info_name, 'w')
             
         for i,note in enumerate(self.table):
+            info.write(str(len(note[0][0]))+'\n')
             for j,vol in enumerate(note):
-                info.write(str(len(vol[0])) + '\n')
-                for element in vol[0]:
+                for element in vol:
                     A.write(element)
-                for element in vol[1]:
+                for element in vol:
                     B.write(element)
         A.close()
         B.close()
