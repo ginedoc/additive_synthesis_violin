@@ -29,9 +29,11 @@ class SNVln():
         self.data   = pickle.load(open(data_path, "rb"))
         self.An = np.array(pickle.load(open(A_path, "rb")))
         self.Bn = np.array(pickle.load(open(B_path, "rb")))
+        p = os.path.basename(path)
+        self.note = int(p[p.find('_')+1:p.find('_')+3])
 
     """
-    get_vol_fnum(low, high)
+    * get_vol_fnum(low, high)
         low: under bound
         high: upper bound
         
@@ -48,44 +50,42 @@ class SNVln():
             if f_index*hop+fsize < len(self.wav):
                 frame = self.wav[f_index*hop:f_index*hop+fsize]
             else:   # last frame
-                frame = self.wav[N*hop:-1]
+                frame = self.wav[f_index*hop:-1]
                 fsize = len(self.wav) - f_index*hop
 
     
-            # propotion > 50%
-            cnt = 0
-            for pt in frame:
-                if abs(pt) >= low and abs(pt) < high:
-                    cnt += 1
-
-            if cnt >= fsize / 2:
+            # maximum in range
+            if max(frame)>=low and max(frame)<high:
                 f.append(f_index)
 
         return f
 
     """
-    get_fourier_coef(fnum):
+    * get_fourier_coef(fnum, average):
         fnum: list of frame index
+        average: if true, return average coefficient
 
-        return: 2d array
+        return: 2d or 3d array
             [[A list],[B list]]
     """
-    def get_fourier_coef(self, fnum):
+    def get_fourier_coef(self, fnum, average=True):
         N    = self.data['N']
         coef = np.zeros((2,N))
-        
 
         a = []
         b = []
         for f_index in fnum:
-            a.append(self.An[f_index][0])
-            b.append(self.Bn[f_index][0])
+            a.append(self.An[f_index])
+            b.append(self.Bn[f_index])
+
         a = np.array(a)
         b = np.array(b)
-        plt.plot(a)
-        plt.plot(b)
-        plt.show()
         
+        if average is True:
+            return np.array([sum(a)/N, sum(b)/N])
+        elif average is False:
+            return np.array([a, b])
 
-        return coef[0]
+    
+
 
