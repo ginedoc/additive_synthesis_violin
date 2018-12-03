@@ -34,7 +34,7 @@ class table():
         info = open('../' + info_name, 'w')
             
         for i,note in enumerate(self.table):
-            info.write(str(len(note[0][0]))+'\n')
+            info.write(str(len(note[0][0]))+' ')
             for j,vol in enumerate(note):
                 for element in vol:
                     A.write(element)
