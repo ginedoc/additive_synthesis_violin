@@ -29,7 +29,7 @@ int main(){
 			float a[length];
 			float b[length];
 			Af.read((char*)&a, sizeof(a));
-			Bf.read((char*)&a, sizeof(b));
+			Bf.read((char*)&b, sizeof(b));
 			A.assign(a, a+length);
 			B.assign(b, b+length);
 
@@ -40,9 +40,8 @@ int main(){
 		}
 		
 	}
-
 	for(int i=0;i<table[0][0].get_length();i++){
-		cout << table[0][0].load_A()[i] << endl;
+		cout << table[0][0].load_B()[i] << endl;
 	}
 
 	info.close();

@@ -36,9 +36,9 @@ class table():
         for i,note in enumerate(self.table):
             info.write(str(len(note[0][0]))+' ')
             for j,vol in enumerate(note):
-                for element in vol:
+                for element in vol[0]:
                     A.write(element)
-                for element in vol:
+                for element in vol[1]:
                     B.write(element)
         A.close()
         B.close()
