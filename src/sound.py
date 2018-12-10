@@ -80,7 +80,9 @@ class SNVln():
 
         a = np.array(a)
         b = np.array(b)
-        
+     
+        a = a/a[0]
+        b = b/b[0]
 
         if average is True:
             return np.array([sum(a)/N, sum(b)/N])
