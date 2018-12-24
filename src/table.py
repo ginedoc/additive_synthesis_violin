@@ -14,8 +14,12 @@ class table():
     """
     def build_table(self, vol_level=5):
         self.table = [[[] for _ in range(vol_level)] for _ in range(64)]
+        i = 0
         for directory in os.listdir(self.dir_path):
+            i = i+1
+            print(i)
             sound = SNVln(self.dir_path+'/'+directory)
+            print((self.dir_path+'/'+directory))
             note  = sound.note
             for vol in range(vol_level):
                 frame = sound.get_vol_fnum(vol/vol_level, vol/vol_level+1/vol_level)
@@ -46,6 +50,7 @@ class table():
                 
 
     #------------------------------------------------------#
+
     """
     check if table is built
         return true if established

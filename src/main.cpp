@@ -41,7 +41,7 @@ int main(){
 		
 	}
 	for(int i=0;i<table[0][0].get_length();i++){
-		cout << table[0][0].load_B()[i] << endl;
+		cout << table[0][0].load_A()[i] << "\t" << table[0][0].load_B()[i] << endl;
 	}
 
 	info.close();

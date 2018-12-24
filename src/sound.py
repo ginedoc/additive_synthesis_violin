@@ -68,7 +68,7 @@ class SNVln():
         return: 2d or 3d array
             [[A list],[B list]]
     """
-    def get_fourier_coef(self, fnum, average=True):
+    def get_fourier_coef(self, fnum, median=True):
         N    = self.data['N']
         coef = np.zeros((2,N))
 
@@ -80,14 +80,16 @@ class SNVln():
 
         a = np.array(a)
         b = np.array(b)
-     
-        for i in range(len(a)):
-            a[i] = a[i]/a[i][0]
-            b[i] = b[i]/b[i][0]
+        
+        #a_coef = np.median(a, axis=0)
+        #b_coef = np.median(b, axis=0)
 
-        if average is True:
-            return np.array([sum(a)/len(a), sum(b)/len(b)])
-        elif average is False:
+
+        if median is True:
+            #return np.array([sum(a)/len(a), sum(b)/len(b)])
+            #return np.array([a_coef, b_coef])
+            return np.array([a[int(len(a)/3)], b[int(len(b)/3)]])
+        elif medium is False:
             return np.array([a, b])
 
     
